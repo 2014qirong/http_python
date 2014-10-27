@@ -1,0 +1,59 @@
+ template for “Guess the number” mini-project
+# input will come from buttons and an input field
+# all output for the game will be printed in the console
+import random
+import simplegui
+import math
+# initialize global variables used in your code
+computer_no = 0
+upper_range = 100
+max_tries = 7
+player_attempts = 0
+# define event handlers for control panel
+def range100():
+    global upper_range, max_tries, player_attempts,computer_no
+    # button that changes range to range [0,100) and restarts
+    print "New game [1-100]“
+    upper_range = 100
+    max_tries = 7
+    player_attempts = 0
+    computer_no = random.randrange(0,upper_range)
+    #print “computer “,computer_no
+def range1000():
+    global upper_range, max_tries, player_attempts,computer_no
+    print “New game [1-1000]“
+    upper_range = 1000
+    max_tries = 10
+    player_attempts = 0
+    computer_no = random.randrange(0,upper_range)
+    #print “computer “,computer_no
+def get_input(guess):
+    global computer_no,player_attempts,max_tries
+    # main game logic goes here
+    player_attempts = player_attempts + 1
+    #print “Comp”, computer_no
+    print “You guessed”,guess
+    attempt_left = max_tries - player_attempts
+    print attempt_left, “attempts left”
+    if (attempt_left == 0):
+        print “No more tries, the number was”,computer_no
+    else:
+        guess = int(guess)
+        if (guess > computer_no):
+            print “Too high!”
+            print “===”
+        elif (guess < computer_no):
+            print “Too low!”
+            print “===”
+        else:
+            print “You got it!”
+            print “===”
+# create frame
+poo = simplegui.create_frame(“guess the number”, 200, 200)
+# register event handlers for control elements
+poo.add_button(“Start new game [0 - 100]“, range100, 200)
+poo.add_button(“Start new game [0 - 1000]“, range1000, 200)
+poo.add_input(“Enter your guess”, get_input, 200)
+# start frame
+poo.start()
+# always remember to check your completed program against the grading rubric
