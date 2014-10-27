@@ -1,0 +1,28 @@
+import simplegui
+import random
+import math
+
+frame=simplegui.create_frame("Guess the Number",200,200)
+
+def button_handle1():
+    secert_Number=random.randrange(0,100)
+    return secert_Number
+    print secert_Number
+def button_handle1():
+    secert_Number=random.randrange(0,1000)
+    return secert_Number
+    print secert_Number
+    
+def input_handler(text_input):
+    input_Number=float(text_input)
+    if secert_Number >input_Number:
+       print "low"
+    elif secert_Number < input_Number:
+       print "high"
+    else:
+        print "equal"
+        
+inp=frame.add_input("Input_Number",input_handler,50)        
+            
+button1=frame.add_button("Range(0-100)",button_handle1,100)
+button2=frame.add_button("Range(0-1000)",button_handle1,100)
